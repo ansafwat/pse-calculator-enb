@@ -1,0 +1,1415 @@
+/* ============================= */
+/* PSE Calculator - Main CSS File */
+/* ============================= */
+/* Single source of truth for all styling and theming */
+
+/* ============================= */
+/* CSS Variables & Theme Configuration */
+/* ============================= */
+:root {
+    /* Enbridge Brand Colors */
+    --enbridge-gold: #d4af37;
+    --enbridge-gold-light: #e4c441;
+    --enbridge-gold-dark: #b8860b;
+    --enbridge-grey: #6c757d;
+    --enbridge-grey-light: #868e96;
+    --enbridge-grey-dark: #495057;
+    
+    /* Theme Colors */
+    --primary-color: var(--enbridge-gold);
+    --primary-color-light: var(--enbridge-gold-light);
+    --primary-color-dark: var(--enbridge-gold-dark);
+    --secondary-color: var(--enbridge-grey);
+    --secondary-color-light: var(--enbridge-grey-light);
+    --secondary-color-dark: var(--enbridge-grey-dark);
+    
+    /* Background Colors */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #141414;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-hover: rgba(212, 175, 55, 0.1);
+    --bg-selected: rgba(212, 175, 55, 0.2);
+    --bg-input: rgba(255, 255, 255, 0.05);
+    --bg-input-focus: rgba(255, 255, 255, 0.08);
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-on-primary: #000000;
+    
+    /* Border Colors */
+    --border-color: rgba(212, 175, 55, 0.2);
+    --border-color-hover: var(--enbridge-gold);
+    
+    /* Typography */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-base: 16px;
+    --font-size-small: 14px;
+    --font-size-xsmall: 12px;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    
+    /* Spacing */
+    --spacing-unit: 8px;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    
+    /* Shadows */
+    --shadow-hover: 0 4px 20px rgba(212, 175, 55, 0.4);
+    
+    /* Misc */
+    --border-radius: 4px;
+    --backdrop-blur: blur(10px);
+}
+
+/* Dark Theme (default) */
+.theme-dark {
+    color-scheme: dark;
+}
+
+/* Light Theme (future implementation) */
+.theme-light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: rgba(0, 0, 0, 0.03);
+    --text-primary: #212529;
+    --text-secondary: rgba(0, 0, 0, 0.7);
+    --border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* ============================= */
+/* Global Styles */
+/* ============================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* ============================= */
+/* Layout Components */
+/* ============================= */
+.app-container {
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+.page-container {
+    padding: var(--spacing-lg);
+}
+
+/* ============================= */
+/* Card Components */
+/* ============================= */
+.card,
+.mantine-Paper-root {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    -webkit-backdrop-filter: var(--backdrop-blur) !important;
+    backdrop-filter: var(--backdrop-blur) !important;
+    border-radius: var(--border-radius);
+}
+
+.card-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-md);
+}
+
+.card-body {
+    padding: var(--spacing-md);
+}
+
+/* ============================= */
+/* Typography */
+/* ============================= */
+.title,
+.mantine-Title-root {
+    color: var(--primary-color) !important;
+    font-weight: var(--font-weight-semibold);
+}
+
+.title-h1 { font-size: 2rem; }
+.title-h2 { font-size: 1.5rem; }
+.title-h3 { font-size: 1.25rem; }
+.title-h4 { font-size: 1.125rem; }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--primary-color); }
+
+/* ============================= */
+/* Form Elements */
+/* ============================= */
+.input,
+.mantine-TextInput-input,
+.mantine-NumberInput-input,
+.mantine-Select-input {
+    background: var(--bg-input) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    transition: all var(--transition-fast) !important;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm) var(--spacing-md);
+    padding-left: 40px !important; /* Space for icon */
+}
+
+/* Unit selectors without icons - override padding */
+.input-width-small .mantine-Select-input {
+    padding-left: var(--spacing-md) !important; /* Normal padding for unit selectors */
+}
+
+.input:focus,
+.mantine-TextInput-input:focus,
+.mantine-NumberInput-input:focus,
+.mantine-Select-input:focus {
+    border-color: var(--border-color-hover) !important;
+    background: var(--bg-input-focus) !important;
+    outline: none;
+}
+
+/* Disabled input styles */
+.mantine-TextInput-input:disabled,
+.mantine-NumberInput-input:disabled,
+.mantine-Select-input:disabled,
+.mantine-TextInput-input[data-disabled],
+.mantine-NumberInput-input[data-disabled],
+.mantine-Select-input[data-disabled] {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.3) !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+/* Disabled left section icons */
+.mantine-Input-leftSection svg {
+    transition: opacity var(--transition-fast);
+}
+
+.mantine-TextInput-root[data-disabled] .mantine-Input-leftSection svg,
+.mantine-NumberInput-root[data-disabled] .mantine-Input-leftSection svg {
+    opacity: 0.3;
+}
+
+.input-label,
+.mantine-InputWrapper-label {
+    color: var(--text-secondary);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Disabled label styling */
+.mantine-InputWrapper-root[data-disabled] .mantine-InputWrapper-label {
+    opacity: 0.5;
+}
+
+/* Fix for input icons */
+.mantine-Input-leftSection {
+    width: 40px !important;
+    left: 0 !important;
+    pointer-events: none;
+}
+
+.mantine-TextInput-root,
+.mantine-NumberInput-root,
+.mantine-Select-root {
+    position: relative;
+}
+
+/* ============================= */
+/* Select Dropdown */
+/* ============================= */
+.select-dropdown,
+.mantine-Select-dropdown,
+.mantine-Combobox-dropdown,
+.mantine-Select-dropdown[data-combobox-dropdown],
+[data-combobox-dropdown] {
+    background: var(--bg-secondary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    -webkit-backdrop-filter: var(--backdrop-blur) !important;
+    backdrop-filter: var(--backdrop-blur) !important;
+    border-radius: var(--border-radius);
+}
+
+.select-item,
+.mantine-Select-item,
+div[data-combobox-option] {
+    color: var(--text-primary) !important;
+    background: transparent !important;
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: background-color var(--transition-fast);
+}
+
+/* Hover state for dropdown items - multiple selectors for specificity */
+.mantine-Select-dropdown [data-combobox-option]:hover,
+.mantine-Select-dropdown [data-hovered="true"],
+.mantine-Select-dropdown [data-combobox-option][data-hovered],
+.mantine-Select-item:hover,
+[data-hovered] {
+    background-color: var(--enbridge-gold) !important;
+    color: var(--text-on-primary) !important;
+}
+
+/* Selected state */
+.select-item-selected,
+.mantine-Select-item[data-selected],
+.mantine-Select-item[data-selected="true"],
+div[data-combobox-option][data-selected],
+div[data-combobox-option][data-selected="true"] {
+    background: var(--bg-selected) !important;
+    background-color: var(--bg-selected) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Selected AND hovered state */
+.mantine-Select-item[data-selected]:hover,
+.mantine-Select-item[data-selected][data-hovered],
+div[data-combobox-option][data-selected]:hover,
+div[data-combobox-option][data-selected][data-hovered] {
+    background-color: rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Remove pseudo-elements */
+.mantine-Select-item::before,
+.mantine-Select-item::after,
+div[data-combobox-option]::before,
+div[data-combobox-option]::after {
+    display: none !important;
+}
+
+/* Force hover styles with higher specificity */
+.mantine-ScrollArea-root [data-combobox-option]:hover {
+    background-color: var(--enbridge-gold) !important;
+    color: var(--text-on-primary) !important;
+}
+
+/* Ensure dropdown items are interactive */
+.mantine-Select-option,
+[data-combobox-option] {
+    cursor: pointer !important;
+}
+
+
+/* Ensure all select dropdowns have dark background */
+.mantine-ScrollArea-viewport {
+    background: transparent !important;
+}
+
+/* Override any default white backgrounds in dropdowns */
+div[data-radix-popper-content-wrapper] > div {
+    background: var(--bg-secondary) !important;
+}
+
+/* Force dark background on Popover dropdowns except equipment table */
+.mantine-Popover-dropdown:not(:has(.equipment-table-popover-content)) {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ============================= */
+/* Buttons */
+/* ============================= */
+.btn {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-semibold);
+    transition: all var(--transition-fast);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.btn-primary,
+.mantine-Button-root[data-variant="filled"] {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark)) !important;
+    color: var(--text-on-primary) !important;
+}
+
+.btn-primary:hover,
+.mantine-Button-root[data-variant="filled"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-hover) !important;
+}
+
+.btn-secondary,
+.mantine-Button-root[data-variant="light"] {
+    background: var(--bg-hover) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.btn-secondary:hover,
+.mantine-Button-root[data-variant="light"]:hover {
+    background: var(--bg-selected) !important;
+}
+
+.btn-subtle,
+.mantine-Button-root[data-variant="subtle"] {
+    background: transparent !important;
+    color: var(--secondary-color) !important;
+}
+
+.btn-subtle:hover,
+.mantine-Button-root[data-variant="subtle"]:hover {
+    background: rgba(108, 117, 125, 0.1) !important;
+}
+
+/* ============================= */
+/* Tabs */
+/* ============================= */
+.tabs-list,
+.mantine-Tabs-tabsList {
+    border-bottom: 1px solid var(--border-color) !important;
+    background: transparent !important;
+}
+
+.tab,
+.mantine-Tabs-tab {
+    color: var(--text-secondary) !important;
+    border: none !important;
+    background: transparent !important;
+    font-weight: var(--font-weight-medium) !important;
+    font-size: var(--font-size-small) !important;
+    padding: 12px 24px !important;
+    transition: all var(--transition-fast) !important;
+    cursor: pointer;
+}
+
+.tab:hover,
+.mantine-Tabs-tab:hover:not([data-active]) {
+    color: var(--text-primary) !important;
+}
+
+.tab-active,
+.mantine-Tabs-tab[data-active] {
+    color: var(--primary-color) !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+}
+
+/* ============================= */
+/* Badges */
+/* ============================= */
+.badge,
+.mantine-Badge-root {
+    font-weight: var(--font-weight-semibold) !important;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-xsmall);
+}
+
+/* Header badge - Enbridge branding */
+.app-header .mantine-Badge-root {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color-dark)) !important;
+    color: var(--text-on-primary) !important;
+}
+
+/* Tier badges - Allow color prop to work */
+.tier-badge-red {
+    background: #fa5252 !important;
+    color: white !important;
+}
+
+.tier-badge-grape {
+    background: #be4bdb !important;
+    color: white !important;
+}
+
+.tier-badge-green {
+    background: #51cf66 !important;
+    color: white !important;
+}
+
+/* Status badges */
+.status-badge-red {
+    background: #fa5252 !important;
+    color: white !important;
+    font-style: normal !important;
+}
+
+.status-badge-blue {
+    background: #339af0 !important;
+    color: white !important;
+    font-style: normal !important;
+}
+
+/* ============================= */
+/* Tables (AG Grid) */
+/* ============================= */
+.ag-theme-alpine-dark {
+    --ag-background-color: transparent;
+    --ag-foreground-color: var(--text-primary);
+    --ag-header-background-color: rgba(20, 20, 20, 0.95);
+    --ag-header-foreground-color: var(--primary-color);
+    --ag-border-color: var(--border-color);
+    --ag-row-hover-color: var(--bg-hover);
+    --ag-selected-row-background-color: var(--bg-selected);
+}
+
+.ag-header-cell {
+    font-weight: var(--font-weight-semibold) !important;
+    font-size: var(--font-size-xsmall) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.ag-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.ag-cell {
+    border-right: none !important;
+}
+
+/* ============================= */
+/* Notifications */
+/* ============================= */
+.notification,
+.mantine-Notification-root {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    -webkit-backdrop-filter: var(--backdrop-blur) !important;
+    backdrop-filter: var(--backdrop-blur) !important;
+    border-radius: var(--border-radius);
+}
+
+/* ============================= */
+/* Scrollbar */
+/* ============================= */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color-light);
+}
+
+/* ============================= */
+/* Application-specific Components */
+/* ============================= */
+
+/* Header */
+.app-header {
+    background: rgba(20, 20, 20, 0.95) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+    border-radius: 0 !important;
+    margin-bottom: 12px !important;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
+}
+
+/* Input Cards */
+.input-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Compact form styles */
+.mantine-Paper-root[data-with-border] {
+    margin-bottom: var(--spacing-sm) !important;
+}
+
+/* Reduce label spacing */
+.mantine-InputWrapper-label {
+    margin-bottom: 2px !important;
+}
+
+/* Compact select inputs */
+.mantine-Select-wrapper,
+.mantine-NumberInput-wrapper,
+.mantine-TextInput-wrapper {
+    margin-bottom: 0 !important;
+}
+
+/* Form Elements */
+.input-flex {
+    flex: 1 !important;
+}
+
+.input-width-small {
+    width: 100px !important;
+}
+
+.button-calculate {
+    margin-top: 25px !important;
+}
+
+/* Results Section */
+.results-container {
+    height: 100% !important;
+}
+
+.results-content {
+    min-height: 400px !important;
+}
+
+.results-placeholder {
+    height: 400px !important;
+}
+
+.saved-calculations-placeholder {
+    height: 300px !important;
+}
+
+/* AG Grid Cell Styles */
+.ag-cell-small {
+    font-size: 13px !important;
+}
+
+.ag-cell-value {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
+}
+
+.ag-cell-white {
+    color: var(--text-primary) !important;
+}
+
+.ag-grid-full {
+    height: 100% !important;
+}
+
+/* Results Display Cards */
+.results-info-card {
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* ============================= */
+/* Static Equation Styles */
+/* ============================= */
+
+/* Static equation rendering for performance */
+.static-equation,
+.static-equation-small {
+    font-family: 'Cambria Math', 'Latin Modern Math', 'STIX Two Math', serif;
+    color: var(--text-primary);
+    text-align: center;
+    padding: 1em;
+    line-height: 1.8;
+    white-space: nowrap;
+    overflow-x: auto;
+    font-size: 1.3em;
+}
+
+.static-equation-small {
+    font-size: 1.1em;
+}
+
+/* Variable with dot notation */
+.var-with-dot {
+    position: relative;
+    display: inline-block;
+}
+
+.var-with-dot::before {
+    content: '·';
+    position: absolute;
+    top: -0.3em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8em;
+}
+
+/* Fraction styling */
+.frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 0.2em;
+    position: relative;
+    line-height: 1;
+}
+
+.frac-num {
+    padding: 0 0.3em 0.1em 0.3em;
+    border-bottom: 1.5px solid currentColor;
+}
+
+.frac-den {
+    padding: 0.1em 0.3em 0 0.3em;
+}
+
+.frac-small {
+    font-size: 0.9em;
+}
+
+.frac-small .frac-num,
+.frac-small .frac-den {
+    padding: 0 0.2em;
+    font-size: 0.95em;
+}
+
+
+/* Parentheses and brackets */
+.paren-group,
+.bracket-group {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+
+.paren,
+.bracket {
+    font-size: 1.3em;
+    vertical-align: middle;
+    font-weight: 300;
+}
+
+.bracket {
+    font-size: 1.4em;
+}
+
+/* Style brackets with superscripts */
+.bracket-group > sup {
+    margin-left: 0.1em;
+}
+
+/* Complex exponents */
+.complex-exp {
+    vertical-align: super;
+    font-size: 0.85em;
+    margin-left: 0.1em;
+}
+
+/* Subscripts and superscripts */
+sub {
+    vertical-align: sub;
+    font-size: 0.75em;
+}
+
+sup {
+    vertical-align: super;
+    font-size: 0.85em;
+}
+
+/* ============================= */
+/* Information Tab Styles */
+/* ============================= */
+
+/* Performance optimization for Information tab */
+.mantine-Tabs-panel[data-value="info"] {
+    will-change: scroll-position;
+    /* Removed deprecated -webkit-overflow-scrolling property */
+    /* Modern browsers handle smooth scrolling automatically */
+}
+
+/* Tables */
+.tiering-table,
+.roles-table,
+.equipment-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Optimize table rendering */
+    table-layout: fixed;
+}
+
+.tiering-table th,
+.roles-table th,
+.equipment-table th {
+    background: var(--bg-secondary);
+    color: var(--primary-color);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.tiering-table th small {
+    display: block;
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-xsmall);
+    color: var(--text-secondary);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    word-spacing: 2px;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+    padding: 0 4px;
+    white-space: pre-wrap;
+}
+
+.tiering-table th small span {
+    white-space: pre !important;
+    display: inline-block;
+}
+
+.tiering-table td,
+.roles-table td,
+.equipment-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+}
+
+/* Equipment table specific styles */
+.equipment-table td[rowspan] {
+    font-weight: var(--font-weight-medium);
+}
+
+.equipment-table small {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-secondary);
+    font-size: var(--font-size-xsmall);
+    line-height: 1.4;
+}
+
+/* Mini equipment table for popovers */
+.equipment-table-mini {
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.equipment-table-mini th,
+.equipment-table-mini td {
+    padding: 0.4rem !important;
+    font-size: 0.75rem;
+    color: #212529 !important; /* Dark text for light background */
+}
+
+.equipment-table-mini th {
+    background: #f8f9fa;
+    color: #495057 !important;
+    font-weight: var(--font-weight-semibold);
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+.equipment-table-mini td {
+    border: 1px solid #dee2e6;
+    background: white;
+}
+
+/* Override strong elements in mini table - except for dividers */
+.equipment-table-mini td:not([colspan]) strong {
+    color: #212529 !important;
+}
+
+/* Popover dropdown specific styles - only for equipment table */
+.equipment-table-popover-content {
+    background: white !important;
+    color: #212529 !important;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* Equipment table popover parent dropdown */
+.mantine-Popover-dropdown:has(.equipment-table-popover-content) {
+    background: white !important;
+    color: #212529 !important;
+}
+
+/* Equipment table popover title */
+.equipment-table-popover-content .mantine-Text-root:first-child {
+    color: #212529 !important;
+    font-weight: 600 !important;
+}
+
+/* Equipment table popover citation */
+.equipment-table-popover-content .mantine-Text-root[c="dimmed"] {
+    color: #6c757d !important;
+}
+
+/* Equipment table section headers (dividers) */
+.equipment-table-mini td[colspan="3"] {
+    background: rgba(212, 175, 55, 0.15) !important;
+    color: #6c757d !important; /* Light grey color for divider text */
+}
+
+/* Divider text styling */
+.equipment-table-mini td[colspan="3"] strong {
+    color: #6c757d !important;
+    font-weight: 600;
+}
+
+/* Segmented Control styling */
+.mantine-SegmentedControl-root {
+    background: var(--bg-input) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Ensure dark background for the control wrapper */
+.mantine-SegmentedControl-control {
+    background: transparent !important;
+}
+
+.mantine-SegmentedControl-label {
+    color: var(--text-secondary) !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.mantine-SegmentedControl-label[data-active] {
+    color: var(--text-on-primary) !important;
+}
+
+.mantine-SegmentedControl-indicator {
+    background: var(--primary-color) !important;
+    box-shadow: none !important;
+}
+
+/* Orifice input type toggle styling */
+#orifice-input-type {
+    background: var(--bg-input) !important;
+}
+
+#orifice-input-type .mantine-SegmentedControl-control {
+    background: transparent !important;
+}
+
+#orifice-input-type .mantine-SegmentedControl-label {
+    font-weight: 600 !important;
+    padding: 4px 12px !important;
+}
+
+.tier-1-header {
+    background: rgba(250, 82, 82, 0.2) !important;
+    color: #fa5252 !important;
+}
+
+.tier-2-header {
+    background: rgba(190, 75, 219, 0.2) !important;
+    color: #be4bdb !important;
+}
+
+/* Equations */
+.equation-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    text-align: center;
+    margin: var(--spacing-sm) 0;
+    overflow-x: visible;
+    min-height: 100px;
+    /* Performance optimization */
+    contain: layout style;
+    will-change: transform;
+}
+
+.equation {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+}
+
+/* Variable list items */
+.variable-item {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 0.4rem;
+}
+
+/* Better spacing for equation boxes */
+.equation-box + .equation-box {
+    margin-top: var(--spacing-lg);
+}
+
+/* Prevent equation overflow and ensure proper sizing */
+.equation-box {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Links */
+.info-link {
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+}
+
+.info-link:hover {
+    color: var(--primary-color-light) !important;
+    text-decoration: underline !important;
+}
+
+/* Table responsiveness */
+@media (max-width: 768px) {
+    /* Make tables responsive */
+    .tiering-table,
+    .roles-table,
+    .equipment-table {
+        font-size: var(--font-size-small);
+        display: block;
+        width: 100%;
+    }
+    
+    /* Table container - ensure proper containment */
+    .mantine-Table-root {
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Ensure Paper components contain tables properly */
+    .mantine-Paper-root:has(.tiering-table) {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+    
+    .mantine-Table-table {
+        width: 100%;
+        table-layout: auto; /* Allow cells to adjust width */
+    }
+    
+    /* Table cells with text wrapping */
+    .tiering-table th,
+    .tiering-table td,
+    .roles-table th,
+    .roles-table td,
+    .equipment-table th,
+    .equipment-table td {
+        padding: 8px;
+        font-size: 12px;
+        line-height: 1.4;
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+    }
+    
+    /* Special handling for tiering table due to complex structure */
+    .tiering-table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed !important; /* This ensures columns respect width percentages */
+    }
+    
+    /* Ensure colSpan cells don't affect column widths */
+    .tiering-table th[colspan] {
+        width: auto !important;
+    }
+    
+    /* Force all tiering table cells to fit */
+    .tiering-table * {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+    
+    /* Override inline white-space styles for tiering table */
+    .tiering-table span[style*="white-space"] {
+        white-space: normal !important;
+    }
+    
+    /* Tiering table specific cell handling */
+    .tiering-table th:first-child,
+    .tiering-table td:first-child {
+        width: 20%; /* Smaller width for Service Fluid Classification */
+    }
+    
+    /* Evenly distribute the four tier columns */
+    .tiering-table th:nth-child(2),
+    .tiering-table td:nth-child(2),
+    .tiering-table th:nth-child(3),
+    .tiering-table td:nth-child(3),
+    .tiering-table th:nth-child(4),
+    .tiering-table td:nth-child(4),
+    .tiering-table th:nth-child(5),
+    .tiering-table td:nth-child(5) {
+        width: 20%; /* Each tier column gets 20% */
+    }
+    
+    .equipment-table th:first-child,
+    .equipment-table td:first-child {
+        width: 40%;
+    }
+    
+    /* Make table headers not sticky on mobile for better scrolling */
+    .tiering-table thead th,
+    .roles-table thead th,
+    .equipment-table thead th {
+        position: static;
+        background: var(--bg-secondary);
+    }
+    
+    /* Equation responsiveness */
+    .equation {
+        font-size: 0.8rem;
+        overflow-x: auto;
+    }
+    
+    .equation-box {
+        overflow-x: auto;
+        padding: var(--spacing-xs);
+    }
+    
+    .static-equation {
+        font-size: 1em;
+        overflow-x: auto;
+        display: block;
+    }
+    
+    .static-equation-small {
+        font-size: 0.85em;
+    }
+    
+    /* Information tab specific mobile styles */
+    .mantine-Tabs-panel[data-value="info"] {
+        padding: var(--spacing-sm);
+    }
+    
+    /* Stack paper components with less margin */
+    .mantine-Paper-root {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Make links stack vertically on mobile */
+    .mantine-Anchor-root {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+    }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 480px) {
+    /* Further adjust tiering table columns for very small screens */
+    .tiering-table th:first-child,
+    .tiering-table td:first-child {
+        width: 25% !important; /* Slightly more space for classification on mobile */
+        font-size: 10px;
+        padding: 4px;
+    }
+    
+    /* Four tier columns share remaining 75% equally */
+    .tiering-table th:nth-child(2),
+    .tiering-table td:nth-child(2),
+    .tiering-table th:nth-child(3),
+    .tiering-table td:nth-child(3),
+    .tiering-table th:nth-child(4),
+    .tiering-table td:nth-child(4),
+    .tiering-table th:nth-child(5),
+    .tiering-table td:nth-child(5) {
+        width: 18.75% !important; /* (75% / 4) for each tier column */
+        font-size: 9px;
+        padding: 3px;
+    }
+    /* Make tiering table fully responsive on very small screens */
+    .tiering-table {
+        width: 100%;
+        font-size: 9px;
+    }
+    
+    /* Abbreviate content in Service Fluid Classification column */
+    .tiering-table td:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    /* Add visual scroll hint for tiering table */
+    .mantine-Table-root:has(.tiering-table)::after {
+        content: '← Swipe to see more →';
+        position: sticky;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        font-size: 10px;
+        color: var(--primary-color);
+        background: var(--bg-primary);
+        padding: 4px 8px;
+        border-radius: var(--border-radius);
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 10;
+    }
+    /* Adjust table cells for very small screens */
+    .tiering-table th,
+    .tiering-table td,
+    .roles-table th,
+    .roles-table td,
+    .equipment-table th,
+    .equipment-table td {
+        padding: 6px;
+        font-size: 11px;
+    }
+    
+    /* Stack table cells for equipment table on very small screens */
+    .equipment-table {
+        font-size: 10px;
+    }
+    
+    .equipment-table td {
+        display: block;
+        width: 100% !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .equipment-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 120px;
+        margin-right: 10px;
+    }
+    
+    /* Hide table headers for equipment table on mobile */
+    .equipment-table thead {
+        display: none;
+    }
+    
+    /* Ensure tables stay within container */
+    .mantine-Table-table {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Make tab labels smaller */
+    .mantine-Tabs-tab {
+        padding: 6px 12px !important;
+        font-size: 11px !important;
+    }
+    
+    /* Reduce padding on tab panels */
+    .mantine-Tabs-panel[data-value="info"] {
+        padding: var(--spacing-xs);
+    }
+    
+    /* Stack equation variables list */
+    .equation-variables {
+        font-size: 10px;
+    }
+    
+    /* Make headers more compact */
+    h2, h3, .section-title {
+        font-size: 14px !important;
+        margin-top: var(--spacing-sm);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    /* Remove scroll indicators since tables now wrap */
+    .mantine-Table-root {
+        position: relative;
+    }
+    
+    /* Paper components should contain tables properly */
+    .mantine-Paper-root {
+        overflow: hidden;
+        width: 100%;
+    }
+    
+    /* Ensure tab panels don't overflow */
+    .mantine-Tabs-panel {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    /* Special handling for tiering table on mobile */
+    .tiering-table th small {
+        display: block;
+        font-size: 9px;
+        margin-top: 2px;
+    }
+    
+    /* Make tiering table scrollable with indicator */
+    .tiering-table-wrapper {
+        position: relative;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -8px;
+        padding: 0 8px;
+    }
+    
+    /* Add scroll indicator for tiering table */
+    .mantine-Table-root:has(.tiering-table) {
+        box-shadow: inset -15px 0 10px -10px rgba(212, 175, 55, 0.2);
+    }
+    
+    /* Compress tiering table content on mobile */
+    .tiering-table td {
+        font-size: 10px;
+        line-height: 1.2;
+    }
+    
+    /* Stack values in cells vertically */
+    .tiering-table td br {
+        display: none;
+    }
+    
+    .tiering-table td span {
+        display: block;
+        margin: 2px 0;
+    }
+    
+    /* Make roles table more compact */
+    .roles-table td ul {
+        padding-left: 15px;
+        margin: 4px 0;
+    }
+    
+    .roles-table td li {
+        margin-bottom: 4px;
+        line-height: 1.3;
+    }
+}
+
+/* ============================= */
+/* Divider Styling */
+/* ============================= */
+.mantine-Divider-root {
+    border-color: var(--border-color) !important;
+}
+
+.mantine-Divider-label {
+    background: rgba(255, 255, 255, 0.02) !important;
+    color: var(--primary-color) !important;
+    font-size: var(--font-size-small) !important;
+    font-weight: var(--font-weight-medium) !important;
+    padding: 0 var(--spacing-md);
+    letter-spacing: 0.5px;
+}
+
+/* ============================= */
+/* Utility Classes */
+/* ============================= */
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+/* ============================= */
+/* Grid System */
+/* ============================= */
+.grid-responsive {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.grid-2-cols {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Input groups with label and control */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.input-row {
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: flex-end;
+}
+
+/* ============================= */
+/* Responsive Design */
+/* ============================= */
+@media (max-width: 768px) {
+    .page-container {
+        padding: var(--spacing-md);
+    }
+    
+    .tab,
+    .mantine-Tabs-tab {
+        padding: 8px 16px !important;
+        font-size: 12px !important;
+    }
+    
+    /* One input group per row on mobile - Override Mantine Grid */
+    .mantine-Grid-col {
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Keep input and unit selector on same row on mobile */
+    .mantine-Group-root {
+        flex-direction: row !important;
+        gap: var(--spacing-xs) !important;
+    }
+    
+    /* Special case for header group - stack vertically */
+    .app-header .mantine-Group-root {
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .input-row {
+        flex-direction: row;
+        gap: var(--spacing-xs);
+    }
+    
+    /* Unit selectors stay smaller width on mobile */
+    .input-width-small {
+        width: 120px !important;
+        min-width: 120px !important;
+    }
+    
+    /* Main inputs take remaining space */
+    .input-flex {
+        flex: 1 !important;
+    }
+    
+    /* Adjust button spacing - keep with target tier if in group */
+    .button-calculate {
+        flex: 1 !important;
+    }
+    
+    /* Section titles */
+    .section-title {
+        font-size: 16px !important;
+    }
+    
+    /* Card padding */
+    .input-card {
+        padding: var(--spacing-sm) !important;
+    }
+    
+    /* One control per row on mobile */
+    .grid-2-cols {
+        grid-template-columns: 1fr !important;
+    }
+}
